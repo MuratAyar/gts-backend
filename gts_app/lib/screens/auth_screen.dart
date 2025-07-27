@@ -1,8 +1,10 @@
+// 📁 lib/auth_screen.dart
 import 'package:flutter/material.dart';
 import 'home_page.dart'; // aynı klasörde olduğu için kısa import
 
 class AuthScreen extends StatelessWidget {
-  const AuthScreen({super.key});
+  final String initialTab; // 'login' or 'signup'
+  const AuthScreen({super.key, required this.initialTab});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,16 @@ class AuthScreen extends StatelessWidget {
             width: double.infinity,
           ),
           Container(color: Colors.black.withOpacity(0.5)),
+          Positioned(
+            top: 40,
+            left: 16,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(32.0),

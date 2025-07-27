@@ -1,5 +1,7 @@
+// 📁 lib/main.dart
 import 'package:flutter/material.dart';
-import 'package:gts_app/screens/auth_screen.dart';
+import 'screens/unauthenticated_home.dart'; // kısa import
+import 'screens/auth_screen.dart';
 
 void main() {
   runApp(const GTSApp());
@@ -11,17 +13,19 @@ class GTSApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'GTS Cranes',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFF131520),
-        fontFamily: 'Plus Jakarta Sans',
-        colorScheme: ColorScheme.dark(
-          primary: Colors.orangeAccent,
-          background: const Color(0xFF131520),
-        ),
+        fontFamily: 'NotoSans',
       ),
-      home: const AuthScreen(),
-      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const UnauthenticatedHome(),
+        '/auth': (context) {
+          final args = ModalRoute.of(context)!.settings.arguments as String?;
+          return AuthScreen(initialTab: args ?? 'login');
+        },
+      },
     );
   }
 }

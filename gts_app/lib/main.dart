@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
-import 'screens/auth_screen.dart';
+import 'package:gts_app/screens/auth_screen.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const GTSApp());
+}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class GTSApp extends StatelessWidget {
+  const GTSApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'GTS Cranes',
       theme: ThemeData(
-        colorSchemeSeed: Colors.orange,
-        useMaterial3: true,
+        scaffoldBackgroundColor: const Color(0xFF131520),
+        fontFamily: 'Plus Jakarta Sans',
+        colorScheme: ColorScheme.dark(
+          primary: Colors.orangeAccent,
+          background: const Color(0xFF131520),
+        ),
       ),
-      home: const AuthScreen(),   // <-- start here
+      home: const AuthScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

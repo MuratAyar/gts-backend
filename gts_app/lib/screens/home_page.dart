@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'listings_tab.dart';
+import 'crane_listings.dart'; // Yeni ilanlar sayfası
+
 
 
 class HomePage extends StatefulWidget {
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = const [
-  ListingsTab(), // 👈 İlanlar sekmesi (HTML'den çevrilmiş tasarım)
+    CraneListingsPage(), // 👈 İlanlar sekmesi (HTML'den çevrilmiş tasarım)
   Center(
     child: Text(
       "DM Kutusu",

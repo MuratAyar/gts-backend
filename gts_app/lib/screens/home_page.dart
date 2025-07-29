@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'crane_listings.dart'; // Yeni ilanlar sayfası
-
+import 'profile_tab.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -15,27 +15,23 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = const [
-    CraneListingsPage(), // 👈 İlanlar sekmesi (HTML'den çevrilmiş tasarım)
+  CraneListingsPage(),
   Center(
     child: Text(
       "DM Kutusu",
       style: TextStyle(color: Colors.white, fontSize: 18),
     ),
   ),
-  SizedBox(), // Bu kısım ortadaki kamera butonuna tıklanacak boşluk
+  SizedBox(),
   Center(
     child: Text(
       "Harita",
       style: TextStyle(color: Colors.white, fontSize: 18),
     ),
   ),
-  Center(
-    child: Text(
-      "Profil",
-      style: TextStyle(color: Colors.white, fontSize: 18),
-    ),
-  ),
+  ProfileTab(), // <-- Profil ekranı buraya entegre edildi
 ];
+
 
 
   void _openCameraOrGallery() async {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'listings_tab.dart';
+import 'map_page.dart';
+
 
 
 class HomePage extends StatefulWidget {
@@ -14,26 +16,21 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = const [
-  ListingsTab(), // 👈 İlanlar sekmesi (HTML'den çevrilmiş tasarım)
-  Center(
-    child: Text(
-      "DM Kutusu",
-      style: TextStyle(color: Colors.white, fontSize: 18),
+    const ListingsTab(),
+    const Center(
+      child: Text(
+        "DM Kutusu",
+        style: TextStyle(color: Colors.white, fontSize: 18),
+      ),
     ),
-  ),
-  SizedBox(), // Bu kısım ortadaki kamera butonuna tıklanacak boşluk
-  Center(
-    child: Text(
-      "Harita",
-      style: TextStyle(color: Colors.white, fontSize: 18),
+    const SizedBox(),
+    const MapPage(), // 👈 REPLACED placeholder with the actual map page
+    const Center(
+      child: Text(
+        "Profil",
+        style: TextStyle(color: Colors.white, fontSize: 18),
+      ),
     ),
-  ),
-  Center(
-    child: Text(
-      "Profil",
-      style: TextStyle(color: Colors.white, fontSize: 18),
-    ),
-  ),
 ];
 
 

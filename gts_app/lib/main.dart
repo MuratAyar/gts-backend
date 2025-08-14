@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'auth_gateway.dart';
 
 void main() => runApp(const CraneFinderApp());
 
@@ -8,7 +9,7 @@ class CraneFinderApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CraneFinder',
+      title: 'GTS Cranes',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -344,28 +345,95 @@ class _HeaderBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: const Color(0xFFF8F9FC),
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-      child: Row(
-        children: [
-          const Spacer(),
-          const Text(
-            "CraneFinder",
-            style: TextStyle(
-              color: Color(0xFF0E111B),
-              fontSize: 18,
-              fontWeight: FontWeight.w800,
+      padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
+      child: SizedBox(
+        height: 48,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Sol: Menü
+            Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                onPressed: onMenu,
+                icon: const Icon(Icons.menu, color: Color(0xFF0E111B)),
+                tooltip: 'Menu',
+              ),
             ),
-          ),
-          const Spacer(),
-          IconButton(
-            onPressed: onMenu,
-            icon: const Icon(Icons.menu, color: Color(0xFF0E111B)),
-          ),
-        ],
+
+            // Orta: Başlık
+            const Align(
+              alignment: Alignment.center,
+              child: Text(
+                "GTS Cranes", // <-- güncellendi
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF0E111B),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ),
+
+            // Sağ: Login / Sign Up
+            Align(
+              alignment: Alignment.centerRight,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: Color(0xFFD0D6E7)),
+                      foregroundColor: const Color(0xFF0E111B),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      textStyle: const TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => const AuthGatewayPage(), // login tab
+                        ),
+                      );
+                    },
+                    child: const Text('Login'),
+                  ),
+                  const SizedBox(width: 8),
+                  FilledButton(
+                    style: FilledButton.styleFrom(
+                      backgroundColor: const Color(0xFF143DB8),
+                      foregroundColor: Color(0xFFF8F9FC),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      textStyle: const TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) =>
+                              const AuthGatewayPage(initialTab: 1), // Sign Up tab
+                        ),
+                      );
+                    },
+                    child: const Text('Sign Up'),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+
 
 class _HeroSection extends StatelessWidget {
   final String title;
